@@ -51,7 +51,7 @@ server.delete('/videos/:id', async (request, reply) => {
 
 const port = process.env.PORT || 3333;
 
-server.listen(port, () => {
+server.listen({ port, host: '0.0.0.0' }, () => {
     console.log(`🚀 Servidor rodando na porta ${port}`);
 });
 
