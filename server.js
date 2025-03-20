@@ -1,11 +1,15 @@
 import { fastify } from 'fastify'
-//import { DatabaseMemory } from './database-memory.js'
 import { DatabasePostgres } from './database-postgres.js'
+import fastifyCors from 'fastify-cors';
+
 
 const server = fastify()
-
-//const database = new DatabaseMemory()
 const database = new DatabasePostgres()
+
+// Habilita o CORS para todas as rotas
+server.register(fastifyCors, {
+    origin: '*', // Permite todas as origens. Ajuste conforme necessário.
+  });
 
 server.get('/videos', async (request) => {
     const search = request.query.search
